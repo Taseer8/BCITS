@@ -1,0 +1,449 @@
+
+HIBERNATE & JPA 
+
+26 OBJECT RELATIONAL MAPPING IS programming technique that allows you to map oop classes to relational database tables.
+
+architecture of ORM 
+
+					query languages
+						|
+						|
+					data context
+
+						|
+						|
+					OR Mapping
+						|
+						|
+					DataBase
+
+
+27 main components of jpa are 
+     Entity 
+		to create a table in the db from entity class we specify  the class with @Entity 
+		while creating the class of entity we need to specify with @Id 
+
+
+28. 
+@ONETOMANY : specify the 2 entities having the relationship of one to many 
+for example one user many orders 
+@ONETOONE : it  specify the 2 entities having the relationship of one to one 
+example
+@ManyToOne : it specify the 2 entities having the relationship of many to many 
+example a student can enroll in many courses and each course can have many students.
+@Entity : it specify the java class as a database entity
+@EntityTransaction it is a interface is used to manage transaction in jpa.
+
+29. JPQL java persistence query language used to interact with relational databases.
+
+30. String jpql = "SELECT MIN(P.PRICE) FROM PRODUCT P": DOUBLE MINPRICE = EM.CREATEQUERY(JPQL, DOUBLE.CLASS).GETSINGLERESULT();
+
+31 . step one need 3 dependencies
+
+		1. hibernate-core
+		2. Jakarta.presistanc-api
+		3. mysql-connector 
+32.  steps to create a connection with jdbc 
+	1. load the jdbc driver
+	2. establish database connection
+	3. create sql statement
+	4. Execution query
+	5 close the connection
+33 
+33.1 polymorphism means many forms it allows you to perform a single action in different ways. it is divided into:
+	compile-time polymorphism achived using method overloading.
+
+	methodoverloading : method with same name but differ in parameters and its order 
+
+		public static void student(String name){
+			System.out.println("name of the student is:+name);
+} 
+		public static void student(String name, int age ){
+			System.out.println("name of the student is:+name +"and age" +age);
+} 
+methodoverrading : method with same name but inherited from the parent class to archive the metho overring to add functionalities without changing the parent class implementation.
+
+ public class A{
+		public static void student(String name){
+			System.out.println("name of the student is:+name);
+} 
+}
+public class B extends A{
+		@override
+		public static void student(String name){
+			System.out.println("name of the student is:+name);
+			System.out.println("from child class);
+} 
+}
+33.2 encapsulation  it is the process of wrapping up the data and data members into a single unite.
+
+	it restricted direct access to certain fields,
+	to achieve we need to use private variables and setters and getters 
+
+public class student {
+private String name;
+public void setName(String name){
+  this.name = name;
+}  
+public String getName(){
+return name;
+}
+
+}
+33.3
+Inheritance allows a class to inherit properties and method from one class to another class
+
+public class A{
+		public static void student(String name){
+			System.out.println("name of the student is:+name);
+} 
+}
+public class B extends A{
+		@override
+		public static void student(String name){
+			System.out.println("name of the student is:+name);
+			System.out.println("from child class);
+} 
+}
+
+33.4 Abstraction is the process of hiding the implementation and showing only essential features 
+		achieved using abstract classes and interfaces
+
+public abstract class A{
+
+abstract void start();
+}
+public class main extends A{
+public void start(){
+sout("abstraction"):
+} 
+}
+33. 5 thorw used to throw the exception 
+
+thows it used to define that method might throw an exception.
+
+34  
+ a .equals and == 
+equals is used to check the values
+it is a object class method used to compare the different custom objects values; 
+it is best used to compare non primitive and objects.
+
+== it will check the memory address of the variable's; 
+it best  used to compare the primitive datatypes .
+reference equality and cannot be overridden.
+
+34.b final 
+It's a keyword used to define the content of variables, methods, or classes.
+When applied to a variable, it means the value cannot be reassigned after initialization.
+When applied to a method, it prevents overriding in subclasses.
+When applied to a class, it prevents inheritance
+
+finally 
+finally block is always executed, regardless of whether an exception occurred or was caught.
+
+finalize():
+It's a method that is called by the garbage collector before an object is destroyed.
+It's primarily used for performing cleanup operations, such as releasing resources, before an object is garbage collected
+
+34. c 
+implements: is used to implement the interfaces in the class we can change the implementation in the class .
+
+extends : key words is used to extend the one class in the another class we can access the data and data members of that class
+34 d
+Checked exceptions are checked at compile time.
+External factors like file I/O and database connection cause the checked Exception.
+checked exception must be handled using try-catch block or must be declared using throw keyword 
+
+
+Unchecked exceptions are checked at run time.
+Programming bugs like logical Errors cause the unchecked Exception.
+No handling is required.
+
+34.e 
+contractor are a special type of methods 
+contractor name must and should be same as class name;
+Constructor can be used to initialize an object.
+Constructor is invoked when a object is created using the keyword new.
+Constructor doesn’t have a return type.
+
+Method’s name can be anything.
+Method is invoked by the programmer.
+Method is invoked through method calls.
+Method must have a return type.
+Method can be inherited by subclasses.
+
+34.f 
+hashmap doesn't maintain the insertion order
+it internally uses hash table 
+
+linkedhashmap it maintain the insertion order
+it internally uses a hash map and linked list to maintain the insertions order.
+
+treemap it stroes the elements in sorted order based on the keys ascending order by default.
+ it internally uses red-black tree a self balancing binary search tree
+
+34.g 
+@EnableWebMvc 
+enable the spring mvc features in our application
+it is imported from the WebMvcConfigurationSupport.
+@configuration 
+marks a class as a source of bean definitions
+used to define beans using @Bean annotated methods.
+can be used to defined inter-bean dependencies.
+
+35 . compilation error
+36. a = 10
+ b =15
+37. Hello from Outer
+38. true 
+39. Java Programming
+40. true
+41. 4
+42. 100
+43. yes 
+44. dependencies are passed through the constructor, they  provided when the object is created.
+45 . its throws an exception because of ambiguity in bean names
+46.
+@Repository
+public class UserDeatils implements UserDeatilsRepoImpl{
+@Autowride
+private EntityManagerFactory factory;
+
+@Override
+public boolean findByemail(String email){
+if(email!=null){
+EntityManger manger = factory.createEntityManger();
+typedQuery<userDeatilsEntity> query = mangercreateNamedQuery("findByEmail", UserDeatilsEntity.class);
+return true;
+}
+return false;
+
+}
+
+
+@Service
+public class UserDetailsservice implements  UserDetailsServiceImpl{
+
+@Autowride
+private UserDetailsRepoImpi repo ;
+
+@Override
+public String findByEamil(String email){
+	if (email!=null){
+			UserDeatilsEntity entity1 = repo.findDeactiveByEmail(email);
+			return UserUtill.mappingEntityToDto(entity);
+		}
+		return new UserDeatilsDto();
+	}
+}
+
+@RestController
+public class UserController {
+
+	@Autowired	
+	private UserDeatilsServiceImpl service;
+
+@Getmapping("email)
+public String findByeamil(String email){
+String result = service.findByEamil(email);
+if(result!=null){
+sout("the below details are belongs to "+email);
+}
+}
+
+
+48 .
+
+49. 
+
+
+50 public class PattenMatching{
+    public static void main(String[] args) {
+        int n = 5; 
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}
+51 .
+public class SubstringFinder {
+    public static void main(String[] args) {
+        String input = "abc"; 
+        findAllSubstrings(input);
+    }
+
+    public static void findAllSubstrings(String str) {
+        int length = str.length();
+        for (int i = 0; i < length; i++) {
+            for (int j = i + 1; j <= length; j++) {
+                System.out.println(str.substring(i, j));
+            }
+        }
+    }
+}
+52.
+
+public class TreeMapProgfram{
+    public static void main(String[] args) {
+        
+        TreeMap<Integer, String> map = new TreeMap<>();
+
+        map.put(10, "Apple");
+        map.put(20, "Banana");
+        map.put(5, "Mango");
+        map.put(15, "Grapes");
+
+
+        Map.Entry<Integer, String> firstEntry = map.firstEntry();
+        Map.Entry<Integer, String> lastEntry = map.lastEntry();
+
+                System.out.println("TreeMap: " + map);
+        System.out.println("First Entry: " + firstEntry.getKey() + " -> " + firstEntry.getValue());
+        System.out.println("Last Entry: " + lastEntry.getKey() + " -> " + lastEntry.getValue());
+    }
+}
+53.
+54.it is controller in spring mvc that handles the http resuests and responses.
+55.jsp /html
+56 .
+@Configuration is a Spring annotation used to indicate that a class contains bean definitions.
+@Bean tells Spring that the method return the spring bean of the particular method.
+Used inside a class annotated with @Configuration.
+Dependency Injection (DI) is a design pattern where Spring automatically injects objects
+Reduces tight coupling and improves testability.
+
+IoC (Inversion of Control) is a design principle where the control of object creation and management is given to Spring.
+
+
+57
+public class PrintNumbersRecursively {
+    public static void main(String[] args) {
+        printNumbers(1);  
+    }
+
+    public static void printNumbers(int num) {
+        if (num <= 100) {
+            System.out.println(num);
+            printNumbers(num + 1);  
+}
+    }
+}
+58<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Visibility</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        #myDiv {
+            width: 300px;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: lightblue;
+            border-radius: 5px;
+            display: block; /* Initially visible */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Click the button to toggle the div visibility</h2>
+    
+    <button onclick="toggleDiv()">Toggle Div</button>
+
+    <div id="myDiv">
+        <p>This is a toggled div!</p>
+    </div>
+
+    <script>
+        function toggleDiv() {
+            let div = document.getElementById("myDiv");
+
+            // Toggle between visible and hidden
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
+59.<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Names</title>
+</head>
+<body>
+
+    <h2>Names List</h2>
+    
+    <ul>
+        <c:forEach var="name" items="${nameList}">
+            <li>${name}</li>
+        </c:forEach>
+    </ul>
+
+</body>
+</html>
+
+
+60.<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Color</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Click the button to change the background color</h2>
+    <button onclick="changeBackgroundColor()">Change Color</button>
+
+    <script>
+        function changeBackgroundColor() {
+            let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                        document.body.style.backgroundColor = randomColor;
+        }
+    </script>
+
+</body>
+</html>
+
+
